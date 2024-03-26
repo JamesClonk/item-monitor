@@ -26,6 +26,7 @@ func main() {
 }
 
 func itemWatcher() {
+	time.Sleep(33 * time.Second)
 	for {
 		for _, monitor := range config.Get().Monitors {
 			if len(monitor.Name) > 0 {
