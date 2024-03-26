@@ -1,0 +1,45 @@
+log_level: debug
+log_timestamp: true
+interval: 4h
+
+monitors:
+- name: galaxus
+  items:
+  - name: Mammut Smart HMS 2.0 Screwgate
+    url: https://www.galaxus.ch/de/s3/product/mammut-smart-hms-20-screwgate-karabiner-19665154
+    value: 55.0
+    regex: <meta property="product:price:amount" content="([0-9.]+)"\/>
+  - name: Petzl Corax
+    url: https://www.galaxus.ch/de/s3/product/petzl-corax-m-l-xl-klettergurt-14756028
+    value: 42.42
+    regex: <meta property="product:price:amount" content="([0-9.]+)"\/>
+  webhooks:
+  - url: http://localhost:9876/test
+    template: |
+      {
+        "@type": "MessageCard",
+        "@context": "https://schema.org/extensions",
+        "summary": "{{ .Name }} has current value {{ .CurrentValue }}",
+        "themeColor": "1188dd",
+        "title": "{{ .Name }}",
+        "sections": [
+          {
+            "activityTitle": "{{ .Name }}",
+            "activitySubtitle": "{{ .Name }}"
+            ],
+            "text": "{{ .Name }} has current value {{ .CurrentValue }}"
+          }
+        ],
+        "potentialAction": [
+          {
+            "@type": "OpenUri",
+            "name": "{{ .URL }}",
+            "targets": [
+              {
+                "os": "default",
+                "uri": "{{ .URL }}"
+              }
+            ]
+          }
+        ]
+      }
