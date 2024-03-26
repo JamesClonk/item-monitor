@@ -1,2 +1,2 @@
-# galaxus-monitotrs
-Monitors Galaxus for Schnäpplis
+# item-monitor
+Monitors websites for Schnäpplis 🤑
