@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := run
 SHELL := /bin/bash
-APP ?= $(shell basename $$(pwd))
+APP ?= $(shell basename $$(pwd) | tr '[:upper:]' '[:lower:]')
 COMMIT_SHA = $(shell git rev-parse --short HEAD)
 
 .PHONY: help
