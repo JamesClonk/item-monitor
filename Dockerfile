@@ -39,9 +39,7 @@ RUN useradd -u 1000 -mU -s /bin/bash -d /item-monitor item-monitor && \
 
 ENV PATH=$PATH:/item-monitor/app
 WORKDIR /item-monitor/app
-COPY public ./public/
-COPY static ./static/
-COPY --from=0 /go/srcgithub.com/JamesClonk/item-monitor/item-monitor ./item-monitor
+COPY --from=0 /go/src/github.com/JamesClonk/item-monitor/item-monitor ./item-monitor
 
 RUN chmod +x /item-monitor/app/item-monitor && \
   chown -R item-monitor:item-monitor /item-monitor/app
