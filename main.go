@@ -26,7 +26,7 @@ func main() {
 }
 
 func itemWatcher() {
-	time.Sleep(66 * time.Second)
+	time.Sleep(77 * time.Second)
 	for {
 		for _, monitor := range config.Get().Monitors {
 			if len(monitor.Name) > 0 {
@@ -63,8 +63,9 @@ func itemWatcher() {
 					continue
 				}
 
+				log.Debugf("comparing current value [%.2f] of item [%s] with threshold value [%.2f] ...", currentValue, item.Name, item.Value)
 				if currentValue < item.Value {
-					log.Infof("notify about item [%s], because value is [%.2f]", item.Name, currentValue)
+					log.Infof("notify about item [%s], as current value is [%.2f]", item.Name, currentValue)
 					for _, hook := range monitor.Webhooks {
 						// parse webhook template, fill it with data
 						var data bytes.Buffer
